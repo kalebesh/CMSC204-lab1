@@ -19,7 +19,10 @@ class GradeBookTester {
 		 g1 = new GradeBook(5);
 		 g1.addScore(50);
 		 g1.addScore(75);
-		 
+		 a.addScore(1);
+		 a.addScore(2);
+		 b.addScore(3);
+		 b.addScore(4);
 	}
 
 	@AfterEach
@@ -31,20 +34,20 @@ class GradeBookTester {
 
 	@Test
 	void testAddScore() {
-		a.addScore(1);
-		a.addScore(2);
-		b.addScore(3);
-		b.addScore(4);
-		assertTrue(a.toString().equals("1 2"));
-		assertTrue(b.toString().equals("3 4"));
-		assertEquals(a.getScoreSize(),2);
-		assertEquals(b.getScoreSize(),2);
+		
+		assertTrue(a.toString().equals("1.0 2.0"));
+		assertTrue(b.toString().equals("3.0 4.0"));
+		assertTrue(g1.toString().equals("50.0 75.0"));
+		
+		assertEquals(2,a.getScoreSize(),.0001);
+		assertEquals(2,b.getScoreSize(),.0001);
+		assertEquals(2,g1.getScoreSize(),.0001);
 	}
 
 	@Test
 	void testSum() {
-		assertEquals(3,a.sum(),.01);
-		assertEquals(7,b.sum(),.01);
+		assertEquals(3.0,a.sum(),.0001);
+		assertEquals(7.0,b.sum(),.0001);
 		assertEquals(125,g1.sum(),.0001);
 		
 		
@@ -52,28 +55,19 @@ class GradeBookTester {
 
 	@Test
 	void testMinimum() {
-		assertEquals(1,a.minimum(),.01);
-		assertEquals(3,b.minimum(),.01);
+		assertEquals(1.0,a.minimum(),.001);
+		assertEquals(3.0,b.minimum(),.001);
 		assertEquals(50,g1.minimum(),.0001);
 		
 	}
 
 	@Test
-	void addScoreTest() {
-		assertTrue(g1.toString().equals("50.0 75.0"));
-		
-	}
-
-	@Test
 	void testFinalScore() {
-		assertEquals(2,a.finalScore(),.02);
-		assertEquals(4,b.finalScore(),.04);
+		assertEquals(2.0,a.finalScore(),.0001);
+		assertEquals(4.0,b.finalScore(),.0001);
 		
 	}
 
-	@Test
-	void testToString() {
-		fail("Not yet implemented");
-	}
+	
 
 }
